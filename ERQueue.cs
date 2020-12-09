@@ -17,7 +17,6 @@ namespace MedicalQueue_Murphy
         {
             if (head == null)
             {
-                //create head if none exists
                 head = new PatientList(inputdata);
                 tail = head;
                 count++;
@@ -25,7 +24,7 @@ namespace MedicalQueue_Murphy
             }
             else
             {
-                //add to head otherwise
+                //add to head
                 PatientList temphead = new PatientList(inputdata);
                 temphead.Next = head;
                 head = temphead;
@@ -36,32 +35,41 @@ namespace MedicalQueue_Murphy
         }
         public PatientList DeQueue()
         {
+            PatientList temp = head;
             if (head == null)
             {
-                //don't remove if empty
                 return null;
             }
-            else
+            if (head.Next == null)
             {
-                PatientList temptail = tail;
-                tail.Previous.Next = null;
-                //fix error here?
-                tail.Next = null;
-                tail = null;
+                head = null;
                 count--;
-                return temptail;
+                return temp;
             }
+            PatientList current = head;
+            PatientList previous = null;
+            
+            while(current.Next != null)
+            {
+                previous = current;
+                current = current.Next;
+                temp = current;
+            }
+            //remove from tail
+            previous.Next = current.Next;
+            current = null;
+            count--;
+            return temp;
         }
         public override string ToString()
         {
+            string output = "";
             if (head == null)
             {
-                //don't write if empty
-                return null;
+                output += "There are 0 patients in the queue.\n";
             }
             else
-            {
-                string output = "";
+            { 
                 PatientList current = head;
                 while (current != null)
                 {
@@ -69,8 +77,8 @@ namespace MedicalQueue_Murphy
                     output += "\n";
                     current = current.Next;
                 }
-                return output;
             }
+            return output;
         }
     }
 }

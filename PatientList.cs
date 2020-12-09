@@ -6,11 +6,9 @@ namespace MedicalQueue_Murphy
 {
     class PatientList
     {
-        //contains patients and pointers to others in list
-        protected PatientList _Previous;
+        //contains patients and pointers to next in list, singly linked
         protected PatientList _Next;
         protected Patient _Data;
-        public PatientList Previous { get { return _Previous; } set { _Previous = value; } }
         public PatientList Next { get { return _Next; } set { _Next = value; } }
         public Patient Data { get { return _Data; } set { _Data = value; } }
 
@@ -19,7 +17,6 @@ namespace MedicalQueue_Murphy
 
             Data = p;
             Next = null;
-            Previous = null;
         }
     }
 }

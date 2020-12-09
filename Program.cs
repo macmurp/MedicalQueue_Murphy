@@ -34,7 +34,7 @@ namespace MedicalQueue_Murphy
                         break;
                     case "L":
                         Console.WriteLine("Patients in the current queue:\n");
-                        Console.WriteLine(queue.ToString() + "\n");
+                        Console.WriteLine(queue.ToString());
                         break;
                     case "Q":
                         menu = false;
